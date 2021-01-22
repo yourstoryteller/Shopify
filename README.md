@@ -18,7 +18,7 @@ Simple E-commerce website created using Django.
 - Apache 2.4
 
 **Cloud Platform:**
-- Amazon Web Services Windows Server 2019 
+- Amazon Web Services EC2 With Windows Server 2019 
 
 ## Data Flow
 User navigates to Homepage, logins or signs-up. If it's a sale, few products will be discounted. User selects products and adds them to Cart. User navigates to Cart and after verification of Cart, checks-out. On successful Checkout, Invoice is downloaded and User is redirected to orders page. User has privilege of filling up Cart first and then logging in. While logging in, if user is Staff member (Admin/Staff), User is redirected to Admin Panel.

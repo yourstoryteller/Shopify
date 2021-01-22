@@ -1,0 +1,13 @@
+USERS
+-----
+username: admin
+pass: admin
+
+username: staff1
+pass: staffuser
+
+username: cust1
+pass: customer
+
+username: cust2
+pass: customer

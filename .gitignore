@@ -1,0 +1,10 @@
+# Ignore these folders
+.idea/
+__pycache/
+uploads/
+venv/
+
+# Ignore these files
+*.pyc
+*.pyo
+*.log

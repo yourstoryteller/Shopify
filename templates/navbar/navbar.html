@@ -1,0 +1,38 @@
+{% load static %}
+
+<nav class="one-edge-shadow sticky-top navbar navbar-expand-lg navbar-light bg-white mb-5">
+    <a class="navbar-brand" href="/"><img src="{% static 'img/logo.png' %}" height="40" width="40"> Shopify</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="ml-auto navbar-nav my-2 my-lg-0">
+        <li class="nav-item ">
+          <a class="nav-link" href="{% url 'store:cart' %}">Cart
+            <span class="badge badge-info">{{request.session.cart.keys|length}}</span>
+            <span class="sr-only">(current)</span></a>
+        </li>
+
+        {% if user.is_authenticated %}
+          <li class="nav-item ">
+            <span><p class="ml-2 my-2 text-muted"> Hi, {{ request.user.username }}! </p></span>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="{% url 'store:orders' %}">Orders<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="{% url 'store:logout' %}">Logout<span class="sr-only">(current)</span></a>
+          </li>
+
+        {% else %}
+          <li class="nav-item ">
+            <a class="nav-link" href="{% url 'store:login' %}">Login<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="{% url 'store:signup' %}">Signup<span class="sr-only">(current)</span></a>
+          </li>
+        {% endif %}
+      </ul>
+    </div>
+</nav>

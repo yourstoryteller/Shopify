@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block navbar %}
+{% endblock %}
+
+{% block content %}
+<div class="container mt-2">
+    <div class="p-4">
+        <!-- SIGNUP FORM -->
+        <div class="col-lg-5 rounded mx-auto border pt-4 w-50">
+            <div class="text-center col">
+                <img src="{% static '/img/clothes.png' %}" alt="Clothes image" style="height: 100px;">
+                <div class="display-8">Create An Account</div>
+                <hr>
+            </div>
+
+            <form class="site-form" action="{% url 'store:signup' %}" method="POST">
+                {% csrf_token %}
+
+                {% for field in form %}
+                    <label class="list-group"> {{ field.label_tag }} </label>
+
+                    {{ field }} <br>
+
+                    {% if field.help_text %}
+                        <small class="text-muted mt-2"> {{ field.help_text }} </small>
+                    {% endif %}
+
+                    {% for error in field.errors %}
+                        <p role="alert" class="text-danger mb-0"> {{ error }} </p>
+                    {% endfor %}
+                {% endfor %}
+
+                <div class="form-group mt-3">
+                    <input class="btn btn-sm btn-info" type="submit" value="Sign Up">
+                </div>
+            </form>
+        </div>
+
+        <!-- BOTTOM LINKS -->
+        <div class="mx-auto col-lg-5 mt-2">
+            <div class="pull-left d-inline-block">
+                <a class="text-dark" href="{% url 'store:login' %}"><u>Login instead?</u></a>
+            </div>
+            <div class="pull-right d-inline-block">
+                <a class="text-dark" href="{% url 'store:index' %}"><u>Go to Homepage?</u></a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

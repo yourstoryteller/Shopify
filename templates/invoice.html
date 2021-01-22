@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% load store_tags %}
+
+{% block navbar %}
+{% endblock %}
+
+<!-- CUSTOM CSS -->
+{% block css %}
+<style xmlns="http://www.w3.org/1999/html">
+@page {
+    size: a4 portrait;
+    margin: 2cm;
+}
+
+@frame header {
+    -pdf-frame-content: header;
+    top: 1cm;
+    margin-left: 1cm;
+    margin-right: 1cm;
+    height: 140px;
+}
+
+@frame footer {
+    -pdf-frame-content: footer;
+    left: 50pt; width: 512pt; top: 750pt; height: 200pt;
+}
+
+
+
+#heading {
+    font-family: Arial;
+    font-size: 25px;
+}
+
+#customer {
+    font-size: 15px;
+}
+
+table {
+    font-size: 12px;
+    width: 100%;
+    align-items: center;
+}
+
+table {
+  border: 1px solid black;
+  padding: 5px;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- INVOICE -->
+<div>
+    <center><h1 id="heading">INVOICE</h1></center>
+    <hr>
+
+    <div id="customer">
+        <h1><u>Customer Details: </u></h1>
+        <h3><b>Username: </b>{{request.user.username}}</h3>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Serial No.</th>
+                <th>Product Name</th>
+                <th>Product Image</th>
+                <th>Product Price</th>
+                <th>Product Quantity</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for product in products %}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{product.name}}</td>
+                    <td>
+                        <img style="height: 100px;" src="http://{{base_url}}{{product.image.url}}" alt="{{product.name}} image">
+                    </td>
+                    {% if product.disc_price is not None %}
+                        <td>{{product.disc_price}} Rs</td>
+                    {% else %}
+                        <td>{{product.price}} Rs</td>
+                    {% endif %}
+                    <td>{{product|get_product_quantity:request.session.cart}}</td>
+                    <td>{{product|cal_product_price:request.session.cart}} Rs</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+
+        <tfoot>
+            <tr>
+                <th colspan="4"></th>
+                <th><u>TOTAL</u></th>
+                <th>{{products|cal_cart_price:request.session.cart}} Rs</th>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+{% endblock %}

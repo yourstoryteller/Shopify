@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load store_tags %}
+
+{% block content %}
+<div class="container">
+    <!-- ORDERS -->
+   <div class="border rounded p-2 m-0">
+        <p class="display-4 pl-4 ml-4">Your Orders</p>
+        <hr>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Order No.</th>
+                    <th>Image</th>
+                    <th>Product</th>
+                    <th>Date</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in orders %}
+                <tr>
+                    <td>{{order.id}}</td>
+                    <td><img style="height: 50px;" class="rounded-circle" src="{{order.product.image.url}}" alt=""></td>
+                    <td>{{order.product.name}}</td>
+                    <td>{{order.date}}</td>
+                    <td>{{order.price|currency}}</td>
+                    <td>{{order.quantity}}</td>
+                    <td>{{order.quantity|multiply:order.price|currency}}</td>
+                    {% if order.status %}
+                    <td><small class="badge badge-success">Completed</small></td>
+                    {%else%}
+                    <td><small class="badge badge-warning">Pending</small></td>
+                    {% endif %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+   </div>
+
+    <!-- PAGINATOR -->
+       <div class="row mx-auto my-3">
+           <div class="col-12 text-center">
+                {% if paginator.num_pages > 1 %}
+                    {% if orders.has_previous %}
+                        <li class="page-item btn btn-sm"><a class="page-link" href="?page={{orders.previous_page_number}}">&laquo;</a></li>
+                    {% endif %}
+
+                    {% for i in paginator.page_range %}
+                        <li class="page-item btn btn-sm {% if i == page_num %} active {% endif %}">
+                            <a class="page-link" href="?page={{ i }}">{{i}}</a>
+                        </li>
+                    {% endfor %}
+
+                    {% if orders.has_next %}
+                        <li class="page-item btn btn-sm"><a class="page-link" href="?page={{orders.next_page_number}}">&raquo;</a></li>
+                    {% endif %}
+                {% endif %}
+           </div>
+       </div>
+</div>
+
+{% endblock %}

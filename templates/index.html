@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% load store_tags %}
+
+{% block content %}
+<div class="container-fluid mt-3">
+	<div class="row">
+		<!-- PRODUCTS -->
+		<div id='products' class="col-md-12 mx-auto">
+			<div class="row mx-auto justify-content-center">
+				{% for product in products %}
+					<div class="card mx-5 mb-3" id={{product.id}} style="width: 18rem;">
+						<img class="card-img-top" src="{{product.image.url}}" alt="Card image cap" height="350.75" width="286">
+
+						<div class="card-body">
+							<p class="card-title">{{product.name}}</p>
+							{% if product.disc_price is not None %}
+								<p class="card-text"><del>{{product.price|currency}}</del> <b>{{product.disc_price|currency}}</b></p>
+                			{% else %}
+                    			<p class="card-text"><b>{{product.price|currency}}</b></p>
+                			{% endif %}
+						</div>
+
+						<div class="card-footer p-0">
+							{% if product|is_in_cart:request.session.cart %}
+								<div class="row no-gutters">
+									<form action="/#{{product.id}}" class="col-2 m-0" method="POST">
+										{% csrf_token %}
+										<input hidden type="text" name='product_id' value='{{product.id}}'>
+										<input hidden type="text" name='remove' value='True'>
+										<input type="submit" value=" - " class="form-control btn btn-block btn-info border">
+									</form>
+
+									<div class="text-center col">{{product|get_product_quantity:request.session.cart}} in Cart</div>
+
+									<form action="/#{{product.id}}" class="col-2 m-0" method="POST">
+										{% csrf_token %}
+										<input hidden type="text" name='product_id' value='{{product.id}}'>
+										<input type="submit" value=" + " class="form-control btn btn-block btn-info border">
+									</form>
+								</div>
+
+							{% else %}
+								<form action="/#{{product.id}}" method="POST" class="btn-block">
+									{% csrf_token %}
+									<input hidden type="text" name='product_id' value='{{product.id}}'>
+									<input type="submit" class="float-right btn btn-light form-control" value="Add To Cart">
+								</form>
+							{% endif %}
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+
+			<!--PAGINATOR -->
+			<div class="row mx-auto my-3">
+				<div class="col-12 text-center">
+					{% if paginator.num_pages > 1 %}
+						{% if products.has_previous %}
+							<li class="page-item btn btn-sm">
+								<a class="page-link" href="?page={{products.previous_page_number}}">
+									<i class="fa fa-angle-left"></i>
+								</a>
+							</li>
+						{% endif %}
+
+						{% for i in paginator.page_range %}
+							<li class="page-item btn btn-sm {% if i == page_num %} active {% endif %}">
+								<a class="page-link" href="?page={{ i }}">{{i}}</a>
+							</li>
+						{% endfor %}
+
+						{% if products.has_next %}
+							<li class="page-item btn btn-sm">
+								<a class="page-link" href="?page={{products.next_page_number}}">
+									<i class="fa fa-angle-right"></i>
+								</a>
+							</li>
+						{% endif %}
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

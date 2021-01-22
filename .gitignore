@@ -1,8 +1,6 @@
 # Ignore these folders
-.idea/
-__pycache/
+__pycache__/
 uploads/
-venv/
 
 # Ignore these files
 *.pyc

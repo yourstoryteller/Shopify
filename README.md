@@ -34,12 +34,15 @@ User navigates to Homepage, logins or signs-up. If it's a sale, few products wil
 - Customer has no staff rights. Customer can only login/signup and buy products.
 
 ## Usage
+Open your browser and hit http://15.206.226.180/.  
+OR  
 1. Download and install Python 3.7 (Apache won't run on Python 3.8 and higher versions), PostgreSQL, Apache.
 2. Install and activate Virtual Environment (using pip).
 3. Install requirements.txt (using pip).
 4. Copy contents of httpd.conf.template and add to your Apache24/conf/httpd.conf.
 5. Modify variables of Apache24/conf/httpd.conf and save.
-6. Run Apache Server and hit localhost on your browser.
+6. Run Apache Server and hit http://localhost/ on your browser.
+ 
 
 ## References
 - [E-commerce Django Project Tutorial] (https://www.youtube.com/watch?v=APESx65wpBc&list=PLdBwVRHjcI__NWxctXUSLz1Gg2Mb-B-O-)  

@@ -45,8 +45,8 @@ User navigates to Homepage, logins or signs-up. If it's a sale, few products wil
 - [E-commerce Django Project Tutorial] (https://www.youtube.com/watch?v=APESx65wpBc&list=PLdBwVRHjcI__NWxctXUSLz1Gg2Mb-B-O-)  
 - [Django Pagination Tutorial] (https://simpleisbetterthancomplex.com/tutorial/2016/08/03/how-to-paginate-with-django.html)  
 - [XHTML2PDF Tutorial] (https://stackoverflow.com/questions/60831569/django-xhtml2pdf-download-pdf-instead-open-in-browser)  
-- [Hosting Django Website On Amazon EC2] (https://www.youtube.com/watch?v=OLS0XD6oINA)  
-- [Connecting Apache To Django] (https://www.youtube.com/watch?v=frEjX1DNSpc&t=642s)  
+- [Hosting Django Website On Amazon EC2 Tutorial] (https://www.youtube.com/watch?v=OLS0XD6oINA)  
+- [Connecting Apache To Django Tutorial] (https://www.youtube.com/watch?v=frEjX1DNSpc&t=642s)  
 
 
 

@@ -1,6 +1,5 @@
 # Ignore these folders
 __pycache__/
-uploads/
 media/
 
 # Ignore these files

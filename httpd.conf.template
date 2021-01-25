@@ -32,8 +32,8 @@ Alias /static "C:/Users/Administrator/Desktop/Shopify/static/"
     Require all granted
 </Directory>
 
-Alias /media "C:/Users/Administrator/Desktop/Shopify/"
-<Directory "C:/Users/Administrator/Desktop/Shopify/">
+Alias /media "C:/Users/Administrator/Desktop/Shopify/media"
+<Directory "C:/Users/Administrator/Desktop/Shopify/media">
     Require all granted
 </Directory>
 

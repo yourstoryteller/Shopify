@@ -33,8 +33,7 @@ User navigates to Homepage, logins or signs-up. If it's a sale, few products wil
 **3. Customer**
 - Customer has no staff rights. Customer can only login/signup and buy products.
 
-## Usage
-Open your browser and hit http://15.206.226.180/ OR    
+## Usage 
 - Download and install Python 3.7 (Apache won't run on Python 3.8 and higher versions), PostgreSQL, Apache.
 - Install and activate Virtual Environment (using pip).
 - Install requirements.txt (using pip).
